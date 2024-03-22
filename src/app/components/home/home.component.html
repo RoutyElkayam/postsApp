@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-4 col-md-4">
+            <div class="row">
+                <div class="container">
+                    <div class="list-group list-types">
+                        <button *ngFor="let postGroup of sortedPosts" type="button" class="list-group-item list-group-item-action" (click)="setTypeFilter(postGroup.type)">
+                          {{postGroup.type}} ({{postGroup.count}})
+                        </button>
+                    </div>
+                </div>               
+            </div>
+            <div class="row change-grid-view">
+                <div class="container">
+                    <button type="button" class="btn btn-success" (click)="switchGridToList()">Change view</button>
+                </div>
+            </div>
+        </div> 
+        <div class="col-sm-6 col-md-6">
+            <div class="row justify-content-end actions-buttons">
+                <div class="col-sm-4 col-md-4">
+                    <input type="text" class="form-control" [(ngModel)]="search"  placeholder="חיפוש">
+                </div>
+                <div class="col-sm-2 col-md-2">
+                    <button type="button" class="btn btn-primary" (click)="clearSearch()">Clear</button>
+                </div>
+                <div class="col-sm-2 col-md-2">
+                    <button type="button" class="btn btn-secondary" (click)="getPosts()">Refresh</button>
+                </div>
+                <div class="col-sm-2 col-md-2">
+                    <button type="button" class="btn btn-success" (click)="sortPostsByTitle()">Sort</button>
+                </div>
+            </div>
+            <div class="row">
+                <ng-container *ngIf="gridView; else listView">
+                    <div *ngFor="let post of posts | filterPosts: search | typeFilterPosts: typeFilter" class="card-container-div">
+                        <app-card [post]="post"  [validUrl]="post.PosterUrlExists&&post.Poster!='N/A'"></app-card>
+                    </div>
+                </ng-container>
+                <ng-template #listView>
+                    <!-- List View -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="well" style="max-height: 300px;overflow: auto;">
+                                    <ul class="list-group list-posts checked-list-box">
+                                        <li class="list-group-item" *ngFor="let post of posts | filterPosts: search | typeFilterPosts: typeFilter">
+                                            {{post.Title}}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    <!-- <div *ngFor="let post of posts | filterPosts: search | typeFilterPosts: typeFilter" class="col-md-12">
+                      <app-card [post]="post" [validUrl]="post.PosterUrlExists && post.Poster !== 'N/A'"></app-card>
+                    </div> -->
+                </ng-template>
+            </div>
+        </div>   
+    </div>
+</div>

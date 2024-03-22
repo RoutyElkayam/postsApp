@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="box">
+        <button class="btn btn-outline-primary go-back" (click)="goBack()">
+            <i class="fa fa-arrow-left"></i>
+        </button>
+        <div class="img">
+            <img  src={{post.Poster}}>
+        </div>
+        <h2>{{post.Title}}<br><span>Created at {{post.Year | dateOfPost}}</span></h2>
+        <p> For more details please wait for our next update version etc.</p>
+        <span>
+            <ul>
+                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+            </ul>
+        </span>
+    </div>
+</div>
