@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit{
   }
 
   getPosts(): void{
+    this.sortedPosts = [];
     this.postsService.GetPosts().subscribe((posts:PostsResult)=>{
       this.posts = posts.results;
       this.totalPosts = posts.totalResults;
